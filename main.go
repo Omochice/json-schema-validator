@@ -29,7 +29,7 @@ func validateJSONSchema(filePath string, ignoreNonSchema bool) error {
 	}
 
 	if !result.Valid() {
-		e := fmt.Sprintln("The document is not valid. see errors :")
+		e := fmt.Sprintf("The document %s is not valid. See errors:\n", filePath)
 		for _, desc := range result.Errors() {
 			e += fmt.Sprintf("- %s\n", desc)
 		}
