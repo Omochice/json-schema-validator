@@ -1,28 +1,42 @@
-name: goreleaser
+name: release-please
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - main
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
-  goreleaser:
+  release-please:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: google-github-actions/release-please-action@v4
+        id: release
+        with:
+          release-type: go
+      - uses: actions/checkout@v4
+        if: ${{ steps.release.outputs.release_created }}
         with:
           fetch-depth: 0
       - name: Set up Go
+        if: ${{ steps.release.outputs.release_created }}
         uses: actions/setup-go@v5
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v5
+      - name: Setup tools
+        if: ${{ steps.release.outputs.release_created }}
+        uses: aquaproj/aqua-installer@v3.0.0
         with:
-          distribution: goreleaser
-          version: v1.25.1  # renovate: depName=goreleaser/goreleaser
-          args: release --clean
+          aqua_version: v2.27.0
+      - run: aqua install --all
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Build
+        run: task release-build
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Upload Release Artifact
+        if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ steps.release.outputs.tag_name }} ./dist/*
+
