@@ -6,7 +6,7 @@
   ],
   customManagers: [
     {
-      customTypes: "regex",
+      customType: "regex",
       fileMatch: [".github/workflows/*.yml"],
       matchStrings: [
         "version: (?<currentValue>.*?)  # renovate: depName=(?<depName>.*)",
