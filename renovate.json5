@@ -1,0 +1,17 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
+    "github>Omochice/renovate-config",
+    "github>aquaproj/aqua-renovate-config#2.2.1",
+  ],
+  customManagers: [
+    {
+      customTypes: "regex",
+      fileMatch: [".github/workflows/*.yml"],
+      matchStrings: [
+        "version: (?<currentValue>.*?)  # renovate: depName=(?<depName>.*)",
+      ],
+      "datasourceTemplate": "github-releases",
+    },
+  ],
+}

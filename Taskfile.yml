@@ -1,0 +1,14 @@
+version: "3"
+# see: https://taskfile.dev/usage/
+
+tasks:
+  build:
+    cmds:
+      - go build
+  release-build:
+    cmds:
+      - goreleaser --snapshot --rm-dist
+  fmt:
+    cmds:
+      - goimports -w main.go
+
