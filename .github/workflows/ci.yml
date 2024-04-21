@@ -47,4 +47,5 @@ jobs:
       - name: check github actions
         if: steps.filter.outputs.actions == 'true'
         run: |
-          ghalint run
+          ghalint run .github/workflows/*
+          actionlint .github/workflows/*
