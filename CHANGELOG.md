@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3](https://github.com/Omochice/json-schema-validator/compare/v0.0.2...v0.0.3) (2024-04-21)
+
+
+### Continuous Integration
+
+* Update ci ([#11](https://github.com/Omochice/json-schema-validator/issues/11)) ([28b8573](https://github.com/Omochice/json-schema-validator/commit/28b85735cede34948f03e16acdd866278e90090f))
+
 ## [0.0.2](https://github.com/Omochice/json-schema-validator/compare/v0.0.1...v0.0.2) (2024-04-18)
 
 
