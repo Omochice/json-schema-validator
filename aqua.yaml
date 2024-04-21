@@ -14,3 +14,4 @@ packages:
 - name: go-task/task@v3.36.0
 - name: goreleaser/goreleaser@v1.25.1
 - name: jqlang/jq@jq-1.7.1
+- name: golangci/golangci-lint@v1.57.2
