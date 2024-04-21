@@ -7,7 +7,7 @@ tasks:
       - go build
   release-build:
     cmds:
-      - goreleaser --snapshot --rm-dist
+      - goreleaser --snapshot --clean
   fmt:
     cmds:
       - goimports -w main.go
