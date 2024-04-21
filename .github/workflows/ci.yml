@@ -1,0 +1,40 @@
+name: File checks
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  File-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: Check Changed Files
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            aqua:
+              - "config/aqua/aqua.yaml"
+            go:
+              - "*.go"
+              - "go.mod"
+              - "go.sum"
+      - uses: aquaproj/aqua-installer@v3.0.0
+        with:
+          aqua_version: v2.27.0
+      - name: Check aqua
+        if: steps.filter.outputs.aqua == 'true'
+        run: |
+          task --list-all
+          goreleaser build --clean
+      - name: Set up Go
+        if: steps.filter.outputs.go == 'true'
+        uses: actions/setup-go@v5
+      - name: check go files
+        if: steps.filter.outputs.go == 'true'
+        run: |
+          golangci-lint run
