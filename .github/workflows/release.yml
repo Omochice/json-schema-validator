@@ -29,8 +29,6 @@ jobs:
         uses: aquaproj/aqua-installer@v3.0.0
         with:
           aqua_version: v2.27.0
-      - run: aqua install --all
-        if: ${{ steps.release.outputs.release_created }}
       - name: Build
         run: task release-build
         if: ${{ steps.release.outputs.release_created }}
@@ -38,5 +36,8 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ steps.release.outputs.tag_name }} ./dist/*
+        run: |
+          cat ./dist/artifacts.json | jq ".[] | select(.type == \"Archive\") | .path" | xargs gh release upload ${{ steps.release.outputs.tag_name }}
+          cat ./dist/artifacts.json | jq -r ".[] | select(.type == \"Checksum\") | .path" | xargs -I "{}" cp {} ./dist/checksums.txt
+          gh release upload ${{ steps.release.outputs.tag_name }} ./dist/checksums.txt
 
