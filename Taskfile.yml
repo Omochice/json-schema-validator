@@ -4,11 +4,13 @@ version: "3"
 tasks:
   build:
     cmds:
-      - go build
+      - go build ./cmd/json-schema-validator
   release-build:
     cmds:
       - goreleaser --snapshot --clean
   fmt:
+    shopt:
+      - globstar
     cmds:
-      - goimports -w main.go
+      - goimports -w ./**/*.go
 
