@@ -1,4 +1,4 @@
-# json schema validator
+# JSON Schema Validator
 
 A small tool that validate jsonfile by its `$schema` field.
 
