@@ -1,6 +1,6 @@
 # JSON Schema Validator
 
-A small tool that validate jsonfile by its `$schema` field.
+A small tool that validates JSON files by their `$schema` field.
 
 > [!WARNING]
 > Currently this tool is my hobby project and under development.
