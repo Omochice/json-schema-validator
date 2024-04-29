@@ -17,12 +17,10 @@ func run(filename string, ignoreNonSchema bool, wg *sync.WaitGroup, errCh chan e
 	defer wg.Done()
 	path, err := filepath.Abs(filename)
 	if err != nil {
-		log.Println(err)
 		errCh <- err
 		return
 	}
 	if err := validator.ValidateJSONSchema(path, ignoreNonSchema); err != nil {
-		log.Println(err)
 		errCh <- err
 	}
 }
