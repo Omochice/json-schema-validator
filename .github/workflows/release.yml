@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
       - name: Set up Go
         if: ${{ steps.release.outputs.release_created }}
-        uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
+        uses: actions/setup-go@cdcb36043654635271a94b9a6d1392de5bb323a7 # v5.0.1
       - name: Setup tools
         if: ${{ steps.release.outputs.release_created }}
         uses: aquaproj/aqua-installer@4551ec64e21bf0f557c2525135ff0bd2cba40ec7 # v3.0.0
