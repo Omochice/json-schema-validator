@@ -18,4 +18,5 @@ jobs:
       - name: check build
         run: |
           task --list-all
-          goreleaser build --clean
+          goreleaser check
+          task build
