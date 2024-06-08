@@ -16,5 +16,5 @@ packages:
 - name: jqlang/jq@jq-1.7.1
 - name: golangci/golangci-lint@v1.59.0
 - name: suzuki-shunsuke/pinact@v0.2.0
-- name: suzuki-shunsuke/ghalint@v0.2.10
+- name: suzuki-shunsuke/ghalint@v0.2.11
 - name: rhysd/actionlint@v1.7.1
