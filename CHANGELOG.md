@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.4](https://github.com/Omochice/json-schema-validator/compare/v0.0.3...v0.0.4) (2024-06-30)
+
+
+### Bug Fixes
+
+* **deps:** update module github.com/urfave/cli/v2 to v2.27.2 ([#26](https://github.com/Omochice/json-schema-validator/issues/26)) ([111ed71](https://github.com/Omochice/json-schema-validator/commit/111ed71ed8bf92bcc34168dc11c2b7f673a94d86))
+
 ## [0.0.3](https://github.com/Omochice/json-schema-validator/compare/v0.0.2...v0.0.3) (2024-04-21)
 
 
