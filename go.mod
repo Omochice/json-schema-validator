@@ -3,7 +3,7 @@ module github.com/Omochice/json-schema-validator
 go 1.22.2
 
 require (
-	github.com/tidwall/gjson v1.17.2
+	github.com/tidwall/gjson v1.17.3
 	github.com/urfave/cli/v2 v2.27.3
 	github.com/xeipuuv/gojsonschema v1.2.0
 )
