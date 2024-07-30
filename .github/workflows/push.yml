@@ -4,6 +4,7 @@ on: push
 
 jobs:
   path-filter:
+    timeout-minutes: 30
     outputs:
       aqua: ${{steps.changes.outputs.aqua}}
       go: ${{steps.changes.outputs.go}}

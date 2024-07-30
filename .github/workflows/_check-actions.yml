@@ -4,6 +4,7 @@ on: workflow_call
 
 jobs:
   check-github-action:
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     permissions:
       contents: read
