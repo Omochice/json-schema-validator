@@ -5,8 +5,8 @@ import (
 	"os"
 
 	validator "github.com/Omochice/json-schema-validator"
+	multierror "github.com/hashicorp/go-multierror"
 	"github.com/urfave/cli/v2"
-	"golang.org/x/sync/errgroup"
 )
 
 func main() {
@@ -21,15 +21,17 @@ func main() {
 			},
 		},
 		Action: func(cCtx *cli.Context) error {
-			var g errgroup.Group
+			var meg multierror.Group
 			ignoreNonSchema := cCtx.Bool("quiet-on-non-schema")
 			for i := 0; i < cCtx.NArg(); i++ {
-				g.Go(func() error {
+				meg.Go(func() error {
 					return validator.ValidateJSONSchema(cCtx.Args().Get(i), ignoreNonSchema)
 				})
 			}
-			if err := g.Wait(); err != nil {
-				return err
+
+			merr := meg.Wait()
+			if merr != nil {
+				return merr
 			}
 			return nil
 		},
