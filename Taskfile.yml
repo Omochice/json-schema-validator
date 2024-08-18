@@ -13,4 +13,6 @@ tasks:
       - globstar
     cmds:
       - goimports -w ./**/*.go
-
+  check:
+    cmds:
+      - golangci-lint run
