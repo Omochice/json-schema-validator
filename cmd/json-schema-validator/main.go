@@ -1,29 +1,13 @@
 package main
 
 import (
-	"errors"
-	"fmt"
 	"log"
 	"os"
-	"sync"
-
-	"path/filepath"
 
 	validator "github.com/Omochice/json-schema-validator"
 	"github.com/urfave/cli/v2"
+	"golang.org/x/sync/errgroup"
 )
-
-func run(filename string, ignoreNonSchema bool, wg *sync.WaitGroup, errCh chan error) {
-	defer wg.Done()
-	path, err := filepath.Abs(filename)
-	if err != nil {
-		errCh <- err
-		return
-	}
-	if err := validator.ValidateJSONSchema(path, ignoreNonSchema); err != nil {
-		errCh <- err
-	}
-}
 
 func main() {
 	app := &cli.App{
@@ -37,29 +21,21 @@ func main() {
 			},
 		},
 		Action: func(cCtx *cli.Context) error {
-			errCh := make(chan error, cCtx.NArg())
-			var wg sync.WaitGroup
+			var g errgroup.Group
+			ignoreNonSchema := cCtx.Bool("quiet-on-non-schema")
 			for i := 0; i < cCtx.NArg(); i++ {
-				wg.Add(1)
-				go run(cCtx.Args().Get(i), cCtx.Bool("quiet-on-non-schema"), &wg, errCh)
+				g.Go(func() error {
+					return validator.ValidateJSONSchema(cCtx.Args().Get(i), ignoreNonSchema)
+				})
 			}
-			wg.Wait()
-			go func() {
-				for err := range errCh {
-					fmt.Fprintln(os.Stderr, err)
-				}
-			}()
-
-			close(errCh)
-
-			if len(errCh) > 0 {
-				return errors.New("error occurred")
+			if err := g.Wait(); err != nil {
+				return err
 			}
 			return nil
 		},
 	}
 
 	if err := app.Run(os.Args); err != nil {
-		os.Exit(1)
+		log.Fatal(err)
 	}
 }

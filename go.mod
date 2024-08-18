@@ -6,6 +6,7 @@ require (
 	github.com/tidwall/gjson v1.17.3
 	github.com/urfave/cli/v2 v2.27.4
 	github.com/xeipuuv/gojsonschema v1.2.0
+	golang.org/x/sync v0.8.0
 )
 
 require (
