@@ -8,6 +8,11 @@ import (
 	"github.com/xeipuuv/gojsonschema"
 )
 
+// Varidate some json file with schema that its included
+// throw error if file not have schema field or mismatch with schema
+//
+// filePath path to json file
+// ignoreNonSchema if true, ignore file that not have schema field
 func ValidateJSONSchema(filePath string, ignoreNonSchema bool) error {
 	s, err := getSchemaField(filePath)
 	if err != nil {
@@ -34,6 +39,10 @@ func ValidateJSONSchema(filePath string, ignoreNonSchema bool) error {
 	return nil
 }
 
+// Get schema field from json file
+// if not found return error
+//
+// return schema field value
 func getSchemaField(filePath string) (string, error) {
 	// read file
 	data, err := os.ReadFile(filePath)

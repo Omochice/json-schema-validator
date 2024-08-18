@@ -7,7 +7,7 @@ import (
 
 	"path/filepath"
 
-	"github.com/Omochice/json-schema-validator"
+	validator "github.com/Omochice/json-schema-validator"
 	"github.com/urfave/cli/v2"
 )
 
