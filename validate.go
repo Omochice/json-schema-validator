@@ -1,6 +1,7 @@
 package validator
 
 import (
+	"errors"
 	"fmt"
 	"os"
 
@@ -34,7 +35,7 @@ func ValidateJSONSchema(filePath string, ignoreNonSchema bool) error {
 		for _, desc := range result.Errors() {
 			e += fmt.Sprintf("- %s\n", desc)
 		}
-		return fmt.Errorf(e)
+		return errors.New(e)
 	}
 	return nil
 }
