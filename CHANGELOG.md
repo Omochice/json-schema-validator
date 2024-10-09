@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/Omochice/json-schema-validator/compare/v0.1.0...v0.1.1) (2024-10-09)
+
+
+### Bug Fixes
+
+* **deps:** update module github.com/tidwall/gjson to v1.18.0 ([#207](https://github.com/Omochice/json-schema-validator/issues/207)) ([78b34ea](https://github.com/Omochice/json-schema-validator/commit/78b34ea6f08f9e5e56f65103e7eb5c1a57b45359))
+
 ## [0.1.0](https://github.com/Omochice/json-schema-validator/compare/v0.0.3...v0.1.0) (2024-08-18)
 
 
