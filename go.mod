@@ -5,7 +5,7 @@ go 1.22.2
 require (
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/tidwall/gjson v1.18.0
-	github.com/urfave/cli/v2 v2.27.5
+	github.com/urfave/cli/v2 v2.27.6
 	github.com/xeipuuv/gojsonschema v1.2.0
 )
 
